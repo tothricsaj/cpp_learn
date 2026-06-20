@@ -13,7 +13,14 @@ struct SimpleString {
         buffer[0] = 0;
 
         printf("SimpleString is created!!!\n");
-      }
+  }
+
+  SimpleString(const SimpleString& other)
+      : max_size{ other.max_size },
+      buffer{ new char[other.max_size] },
+      length{ other.length } {
+        std::strncpy(buffer, other.buffer, max_size);
+  }
     
     ~SimpleString() {
       delete[] buffer;
@@ -58,8 +65,17 @@ struct SimpleStringOwner {
     SimpleString string;
 };
 
+SimpleString foo(SimpleString x) {
+  x.append_line("Subi dubi");
+  return x;
+}
 
 int main() {
-  SimpleStringOwner x{ "x" };
-  printf("x is alive\n");
+  SimpleString a{ 20 };
+  SimpleString a_copy = foo(a);
+
+  a.append_line("dub dub dubi");
+
+  a.print("It's a >> ");
+  a_copy.print("It's a_copy >>");
 }
