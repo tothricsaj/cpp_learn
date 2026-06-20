@@ -1,5 +1,5 @@
 CXX := g++
-CXXFLAGS := -std=c++20 -Wall -Wextra -pedantic -g
+CXXFLAGS := -std=c++17 -Wall -Wextra -pedantic -g
 
 SRC_DIRS := examples experiments
 SRC := $(sort $(shell find $(SRC_DIRS) -name '*.cpp' 2>/dev/null))
