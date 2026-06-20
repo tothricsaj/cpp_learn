@@ -1,0 +1,8 @@
+bin/
+build/
+*.o
+*.out
+*.exe
+
+# Local editor settings
+.DS_Store
