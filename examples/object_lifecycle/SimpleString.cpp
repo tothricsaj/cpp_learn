@@ -11,8 +11,6 @@ struct SimpleString {
         }
         buffer = new char[max_size];
         buffer[0] = 0;
-
-        printf("SimpleString is created!!!\n");
   }
 
   SimpleString(const SimpleString& other)
@@ -21,26 +19,38 @@ struct SimpleString {
       length{ other.length } {
         std::strncpy(buffer, other.buffer, max_size);
   }
+
+  SimpleString& operator=(const SimpleString& other) {
+    if (this == &other) return *this;
+
+    const auto new_buffer = new char[other.max_size];
+    delete[] buffer;
+    buffer = new_buffer;
+    length = other.length;
+    max_size = other.max_size;
+    std::strncpy(buffer, other.buffer, max_size);
+
+    return *this;
+  }
     
-    ~SimpleString() {
-      delete[] buffer;
-      printf("SimpleString is dead!\n");
-    }
+  ~SimpleString() {
+    delete[] buffer;
+  }
 
-    void print(const char* tag) const {
-      printf("%s: %s", tag, buffer);
-    }
+  void print(const char* tag) const {
+    printf("%s: %s", tag, buffer);
+  }
 
-    bool append_line(const char* x) {
-      const auto x_len = strlen(x);
-      if (x_len + length + 2 > max_size) return false;
-      std::strncpy(buffer + length, x, max_size - length);
-      length += x_len;
-      buffer[length++] = '\n';
-      buffer[length] = 0;
+  bool append_line(const char* x) {
+    const auto x_len = strlen(x);
+    if (x_len + length + 2 > max_size) return false;
+    std::strncpy(buffer + length, x, max_size - length);
+    length += x_len;
+    buffer[length++] = '\n';
+    buffer[length] = 0;
 
-      return true;
-    }
+    return true;
+  }
 
   private:
     size_t max_size;
@@ -71,11 +81,17 @@ SimpleString foo(SimpleString x) {
 }
 
 int main() {
-  SimpleString a{ 20 };
-  SimpleString a_copy = foo(a);
+  SimpleString a{ 50 };
+  a.append_line("We apologize for the");
 
-  a.append_line("dub dub dubi");
+  SimpleString b{ 50 };
+  b.append_line("Last message");
 
-  a.print("It's a >> ");
-  a_copy.print("It's a_copy >>");
+  a.print("a");
+  b.print("b");
+
+  b = a;
+
+  a.print("a");
+  b.print("b");
 }
