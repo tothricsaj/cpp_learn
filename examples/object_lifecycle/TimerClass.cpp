@@ -1,5 +1,6 @@
 #include <cstdio>
 #include <sys/time.h>
+#include <unistd.h>
 
 class TimerClass {
   public:
@@ -8,6 +9,13 @@ class TimerClass {
       if (gettimeofday(&now, nullptr) == 0) {
         timestamp = now.tv_sec;
       }
+    }
+
+    ~TimerClass() {
+      timeval now;
+      if (gettimeofday(&now, nullptr) == 0) {
+        printf("Lifetime of the timer(in seconds) >> %ld\n", now.tv_sec - timestamp);
+      }     
     }
 
     void print() {
@@ -21,4 +29,5 @@ class TimerClass {
 int main() {
   TimerClass t{};
   t.print();
+  usleep(5000000);
 }
