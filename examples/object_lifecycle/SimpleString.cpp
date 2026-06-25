@@ -64,12 +64,10 @@ struct SimpleStringOwner {
       if (!string.append_line(x)) {
         throw std::runtime_error{ "Not enough memory"};
       }
-      printf("SimpleStringOwner is in the life!!!\n");
       string.print("Constructed");
     }
     ~SimpleStringOwner() {
       string.print("About to destroy");
-      printf("SimpleStringOwner should be die lastly!!\n");
     }
   private:
     SimpleString string;
