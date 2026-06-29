@@ -22,7 +22,9 @@ run: all
 run-single:
 	@test -n "$(FILE)" || (echo "Usage: make run-single FILE=examples/basics/hello_world.cpp" && exit 1)
 	@$(MAKE) single FILE="$(FILE)"
+	@printf "\n--------------PROGRAM RUN--------------\n\n"
 	@./bin/$(basename $(FILE))
+	@printf "\n--------------PROGRAM END--------------\n\n"
 
 list:
 	@printf '%s\n' $(SRC)
