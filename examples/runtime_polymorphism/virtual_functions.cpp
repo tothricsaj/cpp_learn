@@ -3,6 +3,8 @@
 class BaseMsg {
   public:
     virtual const char* msg() const =0;
+
+    virtual ~BaseMsg() = default;
 };
 
 class HelloMsg : public BaseMsg {
