@@ -1,24 +1,35 @@
 #include <cstdio>
 
-class Base {
+class BaseMsg {
   public:
-    virtual const char* msg() const {
-      return "hey hey hey";
-    }
+    virtual const char* msg() const =0;
 };
 
-class Derived : public Base {
+class HelloMsg : public BaseMsg {
   public:
     const char* msg() const override {
       return "hello hello hello";
     }
 };
 
-int main() {
-  Base b;
-  Derived d;
+class ChioMsg : public BaseMsg {
+  public:
+    const char* msg() const override {
+      return "chio chio chio";
+    }
+};
 
-  // printf("\n--------------RESULT--------------\n\n");
-  printf("Base class message >> %s\n", b.msg());
-  printf("Derived class message >> %s\n", d.msg());
+void printMsg(BaseMsg& msgHolder) {
+  printf("The message is >> %s\n", msgHolder.msg());
+}
+
+int main() {
+  HelloMsg hello;
+  ChioMsg chio;
+
+  BaseMsg& base = chio;
+
+  printMsg(hello);
+  printMsg(chio);
+  printMsg(base);
 }
