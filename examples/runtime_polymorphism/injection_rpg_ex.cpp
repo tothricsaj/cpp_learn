@@ -4,7 +4,7 @@ class Attack {
   public:
     Attack(const char* attack_name) : name{ attack_name } {}
     const char* name;
-    const virtual char* make_attack() const =0;
+    virtual const char* make_attack() const =0;
 
     virtual ~Attack() = default; 
 };
@@ -46,15 +46,12 @@ class Hero {
 };
 
 int main() {
-  ArrowAttack* arrow_attack{ new ArrowAttack };
-  SwordAttack* sword_attack{ new SwordAttack };
+  ArrowAttack arrow_attack;
+  SwordAttack sword_attack;
 
-  Hero hero{ arrow_attack };
+  Hero hero{ &arrow_attack };
 
   hero.attack();
-  hero.change_weapon(sword_attack);
+  hero.change_weapon(&sword_attack);
   hero.attack();
-
-  delete arrow_attack;
-  delete sword_attack;
 }
