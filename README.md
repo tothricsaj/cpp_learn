@@ -19,7 +19,7 @@ make
 Build only one specific example:
 
 ```sh
-make single FILE=examples/object_lifecycle/parent_child_lifetest.cpp
+make single FILE=examples/basics/hello_world.cpp
 ```
 
 List available examples:
@@ -31,13 +31,13 @@ make list
 Run a specific example after building everything:
 
 ```sh
-make run FILE=examples/object_lifecycle/parent_child_lifetest.cpp
+make run FILE=examples/basics/hello_world.cpp
 ```
 
 Build and run only one specific example:
 
 ```sh
-make run-single FILE=examples/object_lifecycle/parent_child_lifetest.cpp
+make run-single FILE=examples/basics/hello_world.cpp
 ```
 
 Clean generated files:
@@ -53,7 +53,6 @@ Each `.cpp` file is built as a separate executable.
 Example:
 
 - `examples/basics/hello_world.cpp` -> `bin/examples/basics/hello_world`
-- `examples/object_lifecycle/parent_child_lifetest.cpp` -> `bin/examples/object_lifecycle/parent_child_lifetest`
 
 ## Recommended Usage
 

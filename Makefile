@@ -17,7 +17,9 @@ single:
 
 run: all
 	@test -n "$(FILE)" || (echo "Usage: make run FILE=examples/basics/hello_world.cpp" && exit 1)
+	@printf "\n--------------PROGRAM RUN--------------\n\n"
 	@./bin/$(basename $(FILE))
+	@printf "\n\n--------------PROGRAM END--------------\n\n"
 
 run-single:
 	@test -n "$(FILE)" || (echo "Usage: make run-single FILE=examples/basics/hello_world.cpp" && exit 1)
