@@ -24,7 +24,7 @@ run-single:
 	@$(MAKE) single FILE="$(FILE)"
 	@printf "\n--------------PROGRAM RUN--------------\n\n"
 	@./bin/$(basename $(FILE))
-	@printf "\n--------------PROGRAM END--------------\n\n"
+	@printf "\n\n--------------PROGRAM END--------------\n\n"
 
 list:
 	@printf '%s\n' $(SRC)
